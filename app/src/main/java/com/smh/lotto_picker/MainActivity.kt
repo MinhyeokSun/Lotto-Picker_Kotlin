@@ -2,6 +2,7 @@ package com.smh.lotto_picker
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
@@ -14,11 +15,14 @@ class MainActivity : AppCompatActivity() {
     fun randomNum() {
 
         val random = Random(45)
-        val numberSet = mutableSetOf<Int>() // 중복숙자 x
+        val list = mutableListOf<Int>().apply {
+            for (i in 1..45) {
 
-        while(numberSet.size < 6) {
-            val randomNumber = random.nextInt() + 1
-            numberSet.add(randomNumber)
+            }
         }
+
+        list.shuffle()
+        println(list.subList(0, 6))
+        Log.e("print","${list.subList(0,6)}")
     }
 }
