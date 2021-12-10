@@ -2,14 +2,12 @@ package com.smh.lotto_picker
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.NumberPicker
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
-import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
     private val clearButton: Button by lazy {
@@ -27,6 +25,7 @@ class MainActivity : AppCompatActivity() {
     private val numberPicker: NumberPicker by lazy {
         findViewById<NumberPicker>(R.id.numberPicker)
     }
+
     private val numberTextViewList: List<TextView> by lazy {
         listOf<TextView>(
             findViewById<TextView>(R.id.firstNum),
@@ -49,12 +48,12 @@ class MainActivity : AppCompatActivity() {
         numberPicker.minValue = 1  // 최소 값
         numberPicker.maxValue = 45 // 최대 값
 
-        initRubButton()
+        initRunButton()
         initAddButton()
         initClearButton()
     }
 
-    private fun setNumberBackgroun(number:Int, textView: TextView) {
+    private fun setNumberBackground(number:Int, textView: TextView) {
         when(number) {
             in 1..10 -> textView.background = ContextCompat.getDrawable(this, R.drawable.circle_yellow)
             in 11..20 -> textView.background = ContextCompat.getDrawable(this, R.drawable.circle_blue)
@@ -74,7 +73,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun initRubButton() {
+    private fun initRunButton() {
         runButton.setOnClickListener {
             val list = getRandomNumber()
 
@@ -86,7 +85,7 @@ class MainActivity : AppCompatActivity() {
                 textView.text = number.toString()
                 textView.isVisible = true
 
-                setNumberBackgroun(number, textView)
+                setNumberBackground(number, textView)
             }
 
         }
@@ -113,7 +112,7 @@ class MainActivity : AppCompatActivity() {
             textView.isVisible = true;
             textView.text = numberPicker.value.toString()
 
-            setNumberBackgroun(numberPicker.value, textView)
+            setNumberBackground(numberPicker.value, textView)
 
 
             pickNumberSet.add(numberPicker.value)
