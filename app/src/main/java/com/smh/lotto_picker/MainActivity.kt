@@ -14,14 +14,11 @@ class MainActivity : AppCompatActivity() {
     fun randomNum() {
 
         val random = Random(45)
-        val list = mutableListOf<Int>()
+        val numberSet = mutableSetOf<Int>() // 중복숙자 x
 
-        while(list.size < 6) {
-            val randomNumber = random.nextInt(45) + 1
-            if (list.contains (randomNumber)) {
-                continue
-            }
-            list.add(randomNumber)
+        while(numberSet.size < 6) {
+            val randomNumber = random.nextInt() + 1
+            numberSet.add(randomNumber)
         }
     }
 }
